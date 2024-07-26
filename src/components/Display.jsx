@@ -4,6 +4,7 @@ import DisplayHome from './DisplayHome'
 import DisplayAlbum from './DisplayAlbum'
 import { PlayerContext } from '../context/PlayerContext'
 import { useContext } from 'react'
+import DisplaySearch from './DisplaySearch'
 
 const Display = () => {
 
@@ -31,6 +32,7 @@ const Display = () => {
         <Routes>
           <Route path='/' element={<DisplayHome/>} />
           <Route path='/album/:id' element={<DisplayAlbum album={albumsData.find((x)=>(x._id == albumId))} />} />
+          <Route path='/recherche' element={<DisplaySearch />} />
         </Routes>
       : null
       }

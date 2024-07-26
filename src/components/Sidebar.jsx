@@ -13,7 +13,7 @@ const Sidebar = () => {
                 <img className='w-6' src={assets.home_icon} alt='#'></img>
                 <p className='font-bold'>Home</p>
             </div>
-            <div className='flex item-center gap-3 pl-8 cursor-pointer'>
+            <div onClick={()=> navigate('/recherche')} className='flex item-center gap-3 pl-8 cursor-pointer'>
                 <img className='w-6' src={assets.search_icon} alt='#'></img>
                 <p className='font-bold'>Search</p>
             </div>
