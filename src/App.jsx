@@ -7,6 +7,8 @@ import { PlayerContext } from "./context/PlayerContext";
 const App = () => {
   const { audioRef, track, songsData } = useContext(PlayerContext);
 
+  {track && (document.title=track.name)} 
+
   return (
     <div className="h-screen bg-black">
       {songsData.length !== 0 ? (
