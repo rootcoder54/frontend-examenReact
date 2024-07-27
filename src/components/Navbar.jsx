@@ -15,7 +15,6 @@ const Navbar = () => {
                 <img onClick={()=>navigate(+1)} className='w-8 bg-black p-2 rounded-2xl cursor-pointer' src={assets.arrow_right} alt="" />
             </div>
             <div className='flex items-center gap-4'>
-                <p className='bg-white text-black text-[15px] px-4 py-1 rounded-2xl hidden md:block cursor-pointer'>Explore Premium</p>
                 {etat ?
                     (
                         <div>
@@ -23,14 +22,19 @@ const Navbar = () => {
                             <button onClick={logout} className='bg-black py-1 px-3 rounded-2xl text-[15px] cursor-pointer'>deconnexion</button>
                         </div>
                         ):
-                    (<button onClick={login} className='bg-black py-1 px-3 rounded-2xl text-[15px] cursor-pointer'>connexion</button>)
+                    (
+                        <div className='flex gap-8 items-center'>
+                            <button>
+                                S'inscrire
+                            </button>
+                            <button onClick={login} 
+                                    className='bg-white py-3 px-9 rounded-3xl text-[15px] cursor-pointer text-black'>
+                                        connexion
+                            </button>
+                        </div>
+                    )
                 }
             </div>
-        </div>
-        <div className='flex items-center gap-2 mt-4'>
-            <p className='bg-white text-black px-4 py-1 rounded-2xl cursor-pointer'>All</p>
-            <p className='bg-black px-4 py-1 rounded-2xl cursor-pointer'>Music</p>
-            <p className='bg-black px-4 py-1 rounded-2xl cursor-pointer'>Podcasts</p>
         </div>
     </>
   )
