@@ -3,7 +3,7 @@ import { assets } from "../../assets/assets"
 import { useContext, useState } from "react"
 import { UserContext } from "../../context/UserContext"
 
-const LoginPage=()=>{
+const RegisterPage=()=>{
 
     document.title="login"
 
@@ -13,6 +13,7 @@ const LoginPage=()=>{
 
     const [username,setUsername]=useState("")
     const [password,setPassword]=useState("")
+    const [confpassword,setconfPassword]=useState("")
     const [erreur,setErreur]=useState()
 
     const handlerUsername=(e)=>{
@@ -23,18 +24,14 @@ const LoginPage=()=>{
         setPassword(e.target.value)
     }
 
+    const handlerconfPassword=(e)=>{
+        setconfPassword(e.target.value)
+    }
+
     const handler=()=>{
-        if(username.lenght===1){
-            setErreur("Veillez saisir le login")
+        if(password!==confpassword){
+            setErreur("Les mot de passe sont differents")
         }
-        login(username,password).then(resultat => {
-            if (resultat) {
-                setErreur("true")
-                navigate("/")
-            } else {
-                setErreur("Veillez saisir le login")
-            }
-        })
     }
 
     return (
@@ -63,6 +60,17 @@ const LoginPage=()=>{
                         </div>
                     </div>
 
+                    <div>
+                        <div className="flex items-center justify-between">
+                            <label htmlFor="password" className="block text-sm font-medium leading-6 text-white">Confirmer Mot de passe</label>
+                        </div>
+                        <div className="mt-2">
+                            <input id="password" name="password" type="password" required 
+                                value={confpassword} onChange={handlerconfPassword}
+                                className="rounded bg-transparent border border-white w-full py-2 px-2"/>
+                        </div>
+                    </div>
+
                     {erreur && (
                         <div className="bg-red-500 px-2 py-2 text-center rounded-lg text-white">
                             <p>{erreur}</p>
@@ -71,13 +79,12 @@ const LoginPage=()=>{
 
                     <div>
                         <button type="button" onClick={handler}
-                            className="flex w-full justify-center rounded-2xl bg-green-700 px-5 py-3 text-sm font-semibold leading-6 text-black shadow-sm hover:bg-green-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ">Se Connecter</button>
+                            className="flex w-full justify-center rounded-2xl bg-green-700 px-5 py-3 text-sm font-semibold leading-6 text-black shadow-sm hover:bg-green-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ">S'inscrire</button>
                     </div>
                     <hr />
                     <div className="text-zinc-200 font-bold">
                         <span>
-                            Vous n'avez pas de compte ? {"  "}
-                            <Link to="/register" className="underline">S'inscrire à Spotify</Link>
+                            <Link to="/login" className="underline">Se connecter à Spotify</Link>
                         </span>
                     </div>
                 </form>
@@ -85,4 +92,4 @@ const LoginPage=()=>{
         </div>
     )
 }
-export default LoginPage
+export default RegisterPage

@@ -24,10 +24,10 @@ const Navbar = () => {
                         ):
                     (
                         <div className='flex gap-8 items-center'>
-                            <button>
+                            <button onClick={()=>navigate("/register")}>
                                 S'inscrire
                             </button>
-                            <button onClick={()=>navigate("/auth/login")} 
+                            <button onClick={()=>navigate("/login")} 
                                     className='bg-white py-3 px-9 rounded-3xl text-[15px] cursor-pointer text-black'>
                                         connexion
                             </button>
