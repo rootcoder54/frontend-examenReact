@@ -17,15 +17,19 @@ const UserContextProvider= (props) => {
         setEtat(false)
     }
 
-    const login=async ()=>{
-        try {
-            const response = await axios.get(`${url}/api/album/list`);
-            setPlayliste(response.data.albums);
-            setUsername("John doe")
-            setEtat(true)
-        } catch (error) {
-            
+    const login=async (username,password)=>{
+        if(username==="fofana"&& password==="fofana"){
+            try {
+                const response = await axios.get(`${url}/api/album/list`);
+                setPlayliste(response.data.albums);
+                setUsername("John doe")
+                setEtat(true)
+                return true
+            } catch (error) {
+                
+            }
         }
+        return false
     }
 
 

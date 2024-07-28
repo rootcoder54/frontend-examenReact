@@ -1,29 +1,19 @@
 import React, { useContext } from "react";
-import Sidebar from "./components/Sidebar";
-import Player from "./components/Player";
-import Display from "./components/Display";
-import { PlayerContext } from "./context/PlayerContext";
+import { Route, Routes } from "react-router-dom";
+import LoginPage from "./components/auth/loginPage";
+import Home from "./components/main/Accueil";
 
 const App = () => {
-  const { audioRef, track, songsData } = useContext(PlayerContext);
-
-  {track && (document.title=track.name)} 
-
   return (
-    <div className="h-screen bg-black">
-      {songsData.length !== 0 ? (
-        <>
-          <div className="h-[90%] flex">
-            <Sidebar />
-            <Display />
-          </div>
-          <Player />
-        </>
-      ) : null}
-
-      <audio ref={audioRef} src={track ? track.file : ""} preload="auto"></audio>
+    <div>
+      <Routes>
+        <Route path='/auth/login' element={<LoginPage/>} />
+        <Route path="/*" element={<Home/>} />
+      </Routes>
     </div>
-  );
+  )
 };
+
+
 
 export default App;

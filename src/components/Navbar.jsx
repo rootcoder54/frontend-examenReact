@@ -27,7 +27,7 @@ const Navbar = () => {
                             <button>
                                 S'inscrire
                             </button>
-                            <button onClick={login} 
+                            <button onClick={()=>navigate("/auth/login")} 
                                     className='bg-white py-3 px-9 rounded-3xl text-[15px] cursor-pointer text-black'>
                                         connexion
                             </button>
