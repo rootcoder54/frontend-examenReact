@@ -24,15 +24,12 @@ const LoginPage=()=>{
     }
 
     const handler=()=>{
-        if(username.lenght===1){
-            setErreur("Veillez saisir le login")
-        }
         login(username,password).then(resultat => {
             if (resultat) {
                 setErreur("true")
                 navigate("/")
             } else {
-                setErreur("Veillez saisir le login")
+                setErreur("Username ou password incorrect")
             }
         })
     }

@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { assets } from "../../assets/assets"
 import { useContext, useState } from "react"
 import { UserContext } from "../../context/UserContext"
+import axios from "axios"
 
 const RegisterPage=()=>{
 
@@ -11,10 +12,17 @@ const RegisterPage=()=>{
 
     const {login}=useContext(UserContext)
 
+    const url = 'http://localhost:4000'
+
+    const [nom,setNom]=useState("")
     const [username,setUsername]=useState("")
     const [password,setPassword]=useState("")
     const [confpassword,setconfPassword]=useState("")
     const [erreur,setErreur]=useState()
+
+    const handlerNom=(e)=>{
+        setNom(e.target.value)
+    }
 
     const handlerUsername=(e)=>{
         setUsername(e.target.value)
@@ -28,9 +36,22 @@ const RegisterPage=()=>{
         setconfPassword(e.target.value)
     }
 
-    const handler=()=>{
+    const handler=async ()=>{
         if(password!==confpassword){
             setErreur("Les mot de passe sont differents")
+        }
+        else{
+            const formData = new FormData();
+            formData.append('nom',nom);
+            formData.append('username',username);
+            formData.append('password',password);
+            const response = await axios.post(`${url}/api/user/add`, formData);
+            if(response.data.success){
+                navigate("/")
+            }
+            else{
+                setErreur("Probleme de connexion")
+            }
         }
     }
 
@@ -41,6 +62,14 @@ const RegisterPage=()=>{
                 <img className='w-20' src={assets.spotify_logo} alt='#'></img>
                 <h1 className="text-4xl font-bold">J'ai un compte Spotify</h1>
                 <form className="space-y-6 w-[358px]">
+                    <div>
+                        <label htmlFor="nom" className="block text-md font-bold leading-6 text-white">Nom complet</label>
+                        <div className="mt-2">
+                            <input name="nom" type="text"  required onChange={handlerNom} value={nom}
+                                className="rounded bg-transparent border border-white w-full py-2 px-2" />
+                        </div>
+                    </div>
+
                     <div>
                         <label htmlFor="login" className="block text-md font-bold leading-6 text-white">Adresse e-mail ou nom d'utilisateur</label>
                         <div className="mt-2">

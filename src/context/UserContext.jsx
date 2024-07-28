@@ -18,18 +18,21 @@ const UserContextProvider= (props) => {
     }
 
     const login=async (username,password)=>{
-        if(username==="fofana"&& password==="fofana"){
             try {
-                const response = await axios.get(`${url}/api/album/list`);
+                const response = await axios.get(`${url}/api/user/list`);
+                const user=response.data.users.find(user => (user.username === username)&& (user.password === password));
                 //setPlayliste(response.data.albums);
-                setUsername("Fofana")
-                setEtat(true)
-                return true
+                if(user){
+                    setUsername(username)
+                    setEtat(true)
+                    return true
+                }
+                else{
+                    return false
+                }
             } catch (error) {
                 
             }
-        }
-        return false
     }
 
 
