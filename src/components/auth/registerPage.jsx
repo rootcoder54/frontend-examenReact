@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom"
 import { assets } from "../../assets/assets"
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { UserContext } from "../../context/UserContext"
 import axios from "axios"
 
@@ -10,7 +10,7 @@ const RegisterPage=()=>{
 
     const navigate = useNavigate()
 
-    const {login}=useContext(UserContext)
+    const {inscrire}=useContext(UserContext)
 
     const url = 'http://localhost:4000'
 
@@ -41,12 +41,8 @@ const RegisterPage=()=>{
             setErreur("Les mot de passe sont differents")
         }
         else{
-            const formData = new FormData();
-            formData.append('nom',nom);
-            formData.append('username',username);
-            formData.append('password',password);
-            const response = await axios.post(`${url}/api/user/add`, formData);
-            if(response.data.success){
+            const resultat=inscrire(nom,username,password)
+            if(resultat){
                 navigate("/")
             }
             else{

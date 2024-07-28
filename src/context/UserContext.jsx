@@ -17,6 +17,24 @@ const UserContextProvider= (props) => {
         setEtat(false)
     }
 
+    const inscrire=async(nom,username,password) =>{
+        try {
+            const user={nom,username,password}
+            const response = await axios.post(`${url}/api/user/add`,user);
+            //setPlayliste(response.data.albums);
+            if(response.data.success){
+                setUsername(username)
+                setEtat(true)
+                return true
+            }
+            else{
+                return false
+            }
+        } catch (error) {
+            
+        }
+    }
+
     const login=async (username,password)=>{
             try {
                 const response = await axios.get(`${url}/api/user/list`);
@@ -41,7 +59,8 @@ const UserContextProvider= (props) => {
         username,
         etat,
         logout,
-        login
+        login,
+        inscrire
     }
     return (
         <UserContext.Provider value={contextValue}>
