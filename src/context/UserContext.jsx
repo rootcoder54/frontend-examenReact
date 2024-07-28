@@ -21,8 +21,8 @@ const UserContextProvider= (props) => {
         if(username==="fofana"&& password==="fofana"){
             try {
                 const response = await axios.get(`${url}/api/album/list`);
-                setPlayliste(response.data.albums);
-                setUsername("John doe")
+                //setPlayliste(response.data.albums);
+                setUsername("Fofana")
                 setEtat(true)
                 return true
             } catch (error) {

@@ -18,8 +18,8 @@ const Navbar = () => {
                 {etat ?
                     (
                         <div>
-                            <span className='bg-black px-4 py-1 rounded-2xl cursor-pointer'>{username}</span>
-                            <button onClick={logout} className='bg-black py-1 px-3 rounded-2xl text-[15px] cursor-pointer'>deconnexion</button>
+                            <span className='bg-black py-4 px-6 rounded-2xl text-[15px] cursor-pointer'>{username}</span>
+                            <button onClick={logout} className='bg-white py-3 px-6 rounded-2xl text-[15px] text-black cursor-pointer'>deconnexion</button>
                         </div>
                         ):
                     (
