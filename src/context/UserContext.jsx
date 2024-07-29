@@ -21,8 +21,11 @@ const UserContextProvider= (props) => {
         try {
             const user={nom,username,password}
             const response = await axios.post(`${url}/api/user/add`,user);
-            //setPlayliste(response.data.albums);
+            
             if(response.data.success){
+                //const liste = await axios.get(`${url}/api/playlist/list`);
+                //const pliste=liste.data.playlists.find(item=> item.username===username);
+                //setPlayliste(pliste)
                 setUsername(username)
                 setEtat(true)
                 return true
@@ -41,6 +44,9 @@ const UserContextProvider= (props) => {
                 const user=response.data.users.find(user => (user.username === username)&& (user.password === password));
                 //setPlayliste(response.data.albums);
                 if(user){
+                    //const liste = await axios.get(`${url}/api/playlist/list`);
+                    //const pliste=liste.data.find(item=> item.username===username);
+                    //setPlayliste(pliste)
                     setUsername(username)
                     setEtat(true)
                     return true
